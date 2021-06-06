@@ -14,8 +14,8 @@ class Movies extends Component {
         )
     }
 
-    render() { 
-        return (  
+    renderTable() {
+        return (
             <table className="table">
                 <thead>
                     <tr>
@@ -42,7 +42,23 @@ class Movies extends Component {
                         </tr>
                     ))}
                 </tbody>
-            </table>
+            </table> 
+        )
+    }
+
+    render() { 
+        const movieCounter = this.state.movies.length;
+
+        return (
+            <React.Fragment>
+            { movieCounter === 0 ? <p className="m-2">There are no movies in the database</p> : 
+            (
+                <React.Fragment>
+                    <p className="m-2">Showing {movieCounter} movies in the database</p>
+                    { this.renderTable() }
+                </React.Fragment>
+            )}
+            </React.Fragment>
         );
     }
 }
