@@ -9,15 +9,15 @@ class Movies extends Component {
         movies: getMovies(),
         pageSize: 4,
         currentPage: 1
-    }
+    };
 
     handleDelete = id => {
         this.setState(
             {
                 movies: this.state.movies.filter( movie => movie._id !== id )
             }
-        )
-    }
+        );
+    };
 
     handleLike = movie => {
         const movies = [...this.state.movies];
@@ -30,14 +30,14 @@ class Movies extends Component {
             { 
                 movies
             }
-        )
-    }
+        );
+    };
 
     handlePageChange = page => {
         this.setState({
             currentPage: page
-        })
-    }
+        });
+    };
 
     renderTable(movies) {
         return (
@@ -75,8 +75,8 @@ class Movies extends Component {
                     ))}
                 </tbody>
             </table> 
-        )
-    }
+        );
+    };
 
     render() { 
         const movieCounter = this.state.movies.length;
@@ -100,7 +100,7 @@ class Movies extends Component {
                 onPageChange={this.handlePageChange}/>
             </React.Fragment>
         );
-    }
-}
+    };
+};
  
 export default Movies;
