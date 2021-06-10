@@ -95,10 +95,13 @@ class Movies extends Component {
     };
 
     render() { 
-        const movieCounter = this.state.movies.length;
-        const { pageSize, currentPage, movies: allMovies } = this.state;
+        const { pageSize, currentPage, selectedGenre, movies: allMovies } = this.state;
 
-        const movies = paginate(allMovies, currentPage, pageSize);
+        const filteredMovies = selectedGenre
+            ? allMovies.filter(movie => movie.genre._id === selectedGenre._id)
+            : allMovies;
+
+        const movies = paginate(filteredMovies, currentPage, pageSize);
 
         return (
             <div className="row m-5">
@@ -109,15 +112,15 @@ class Movies extends Component {
                         onItemSelect={this.handleGenreSelect}/>
                 </div>
                 <div className="col">
-                    { movieCounter === 0 ? <p>There are no movies in the database</p> : 
+                    { filteredMovies.length === 0 ? <p>There are no movies in the database</p> : 
                 (
                     <React.Fragment>
-                        <p>Showing {movieCounter} movies in the database</p>
+                        <p>Showing {filteredMovies.length} movies in the database</p>
                         { this.renderTable(movies) }
                     </React.Fragment>
                 )}
                 <Pagination 
-                    itemsCount={movieCounter} 
+                    itemsCount={filteredMovies.length} 
                     pageSize={pageSize} 
                     currentPage={currentPage}
                     onPageChange={this.handlePageChange}/>
