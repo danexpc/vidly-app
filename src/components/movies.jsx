@@ -15,7 +15,7 @@ class Movies extends Component {
   };
 
   componentDidMount() {
-    const defaultFilter = { name: 'All Genres' };
+    const defaultFilter = { _id: '', name: 'All Genres' };
     const genres = [defaultFilter, ...getGenres()];
 
     this.setState({
@@ -56,6 +56,10 @@ class Movies extends Component {
     });
   };
 
+  handleSort = (path) => {
+    console.log(path);
+  };
+
   render() {
     const {
       pageSize,
@@ -90,6 +94,7 @@ class Movies extends Component {
                 movies={movies}
                 onDelete={this.handleDelete}
                 onLike={this.handleLike}
+                onSort={this.handleSort}
               />
             </React.Fragment>
           )}
