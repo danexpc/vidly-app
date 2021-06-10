@@ -15,11 +15,14 @@ class Movies extends Component {
     };
 
     componentDidMount() {
-        const genres = [{name: "All Genres"}, ...getGenres()];
+        const defaultFilter = {name: "All Genres"}
+        const genres = [defaultFilter, ...getGenres()];
+
 
         this.setState({
             movies: getMovies(),
-            genres
+            genres,
+            selectedGenre: defaultFilter
         })
     }
 
