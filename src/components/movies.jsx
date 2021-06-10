@@ -99,17 +99,19 @@ class Movies extends Component {
         const movies = paginate(allMovies, currentPage, pageSize);
 
         return (
-            <div className="row">
-                <div className="col-2">
+            <div className="row m-5">
+                <div className="col-3">
                     <ListGroup 
                         items={this.state.genres}
+                        textProperty="name"
+                        valueProperty="_id"
                         onitemSelected={this.handleGenreSelect}/>
                 </div>
                 <div className="col">
-                    { movieCounter === 0 ? <p className="m-2">There are no movies in the database</p> : 
+                    { movieCounter === 0 ? <p>There are no movies in the database</p> : 
                 (
                     <React.Fragment>
-                        <p className="m-2">Showing {movieCounter} movies in the database</p>
+                        <p>Showing {movieCounter} movies in the database</p>
                         { this.renderTable(movies) }
                     </React.Fragment>
                 )}
